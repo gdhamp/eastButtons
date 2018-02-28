@@ -2,9 +2,9 @@
 //Update 02/13/18
 
 #include <FastLED.h>
-#define NUM_LEDS1 42
-#define NUM_LEDS2 40
-#define NUM_LEDS3 50
+#define NUM_LEDS1 40
+#define NUM_LEDS2 120
+#define NUM_LEDS3 116
 #define DATA_PIN1 9
 #define DATA_PIN2 10
 #define DATA_PIN3 11
