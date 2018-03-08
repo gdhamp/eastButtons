@@ -12,6 +12,14 @@
 #define BRIGHTNESS  255
 #define FRAMES_PER_SECOND 60
 
+int checkInputs(void);
+void renderEffects(void);
+void bpm(CRGB* strand, int numlights);
+void juggle(CRGB* strand, int numlights);
+void rainbowWithGlitter(CRGB* leds, int NUM_LEDS);
+void rainbow(CRGB* leds, int NUM_LEDS);
+void addGlitter(CRGB* leds, int NUM_LEDS, fract8 chanceOfGlitter);
+
 CRGB leds1[NUM_LEDS1];
 CRGB leds2[NUM_LEDS2];
 CRGB leds3[NUM_LEDS3];
@@ -44,7 +52,7 @@ CRGBPalette16 targetPalette(OceanColors_p);
 /////////////////////////////////////////////////////////////////
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115000);
 
   pinMode(buttonPin01, INPUT);
   pinMode(buttonPin02, INPUT);
@@ -73,33 +81,26 @@ void loop() {
 /**
  * Check our inputs and set the button state
  */
-void checkInputs() {
+int checkInputs(void) {
   
  if (digitalRead(buttonPin01) == HIGH) {
     buttonPressed = buttonPin01;
-    return buttonPressed;
-  } 
-  
-  if (digitalRead(buttonPin02) == HIGH) {
+  } else if (digitalRead(buttonPin02) == HIGH) {
     buttonPressed = buttonPin02;
-    return buttonPressed;
-  } 
-  
-  if (digitalRead(buttonPin03) == HIGH) {
+  } else if (digitalRead(buttonPin03) == HIGH) {
     buttonPressed = buttonPin03;
-    return buttonPressed;
-  } 
-  else {
+  } else {
   buttonPressed = 0;
   Serial.println(buttonPressed);
   }
+  return buttonPressed;
 }
 
 
 /**
  * Handle the button state to render effects
  */
-void renderEffects() {
+void renderEffects(void) {
     switch (buttonPressed) {
     case buttonPin01:
      Serial.println("Button 1 pressed.");  
